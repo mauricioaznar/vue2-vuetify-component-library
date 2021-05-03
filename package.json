@@ -2,6 +2,13 @@
   "name": "maguas-vuetify2",
   "version": "0.1.15",
   "private": false,
+  "scripts": {
+    "dev": "vue-cli-service serve ./src/dev.ts",
+    "build": "vue-cli-service build --target lib --name maguas-vuetify2 src/main.ts",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public"
+  },
   "main": "./dist/maguas-vuetify2.common.js",
   "files": [
     "dist/*",
@@ -10,18 +17,12 @@
     "*.json",
     "*.ts"
   ],
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name maguas-vuetify2 src/main.ts",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public"
-  },
   "dependencies": {
     "core-js": "^3.6.5",
     "vee-validate": "^3.4.5",
     "vue": "2.x",
     "vue-router": "^3.2.0",
+    "vuetify": "^2.4.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -42,12 +43,16 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
     "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "~2.4.0",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
   },
   "peerDependencies": {
     "vue": "2.x",
-    "vuetify": "^2.4.11"
+    "vuetify": "2.2.x"
   },
   "eslintConfig": {
     "root": true,
