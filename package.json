@@ -7,7 +7,6 @@
     "build": "vue-cli-service build --target lib --name maguas-vue2-vuetify src/main.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "prepublishOnly": "%npm_execpath% build",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public"
   },
   "dependencies": {
