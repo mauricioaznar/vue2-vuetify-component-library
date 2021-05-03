@@ -45,7 +45,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "vuetify": "1.x"
+    "vuetify": "2.x"
   },
   "eslintConfig": {
     "root": true,
