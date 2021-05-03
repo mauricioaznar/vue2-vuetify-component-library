@@ -26,11 +26,11 @@
   </v-row>
 </template>
 
-<script lang="ts">
+<script>
 import { ValidationProvider } from "vee-validate";
 import Vue from "vue";
 
-export default Vue.extend({
+export default {
   name: "MaguasTextField",
   components: {
     ValidationProvider,
@@ -83,5 +83,5 @@ export default Vue.extend({
   created() {
     this.innerValue = String(this.value);
   },
-});
+};
 </script>
