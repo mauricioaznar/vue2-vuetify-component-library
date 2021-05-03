@@ -2,7 +2,7 @@
   "name": "maguas-vuetify2",
   "version": "0.1.10",
   "private": false,
-  "main": "./dist/maguas-vue2-vuetify.common.js",
+  "main": "./dist/maguas-vuetify2npm.common.js",
   "files": [
     "dist/*",
     "src/*",
