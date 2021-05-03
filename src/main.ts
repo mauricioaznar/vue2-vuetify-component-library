@@ -1,12 +1,21 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import * as components from "./components/index";
+import { VueConstructor } from "vue";
+const ComponentLibrary = {
+  install(Vue: VueConstructor, options = {}) {
+    // components
 
-Vue.config.productionTip = false;
+    Object.keys(components).forEach((key) => {
+      const component = components[key];
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+      Vue.component(component.name, component);
+    });
+  },
+};
+
+export default ComponentLibrary;
+
+if (typeof window !== "undefined" && window.Vue) {
+  window.Vue.use(ComponentLibrary);
+}
+
+// https://www.xiegerts.com/post/creating-vue-component-library-plugin/
