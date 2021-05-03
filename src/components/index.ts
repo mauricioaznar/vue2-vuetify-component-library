@@ -1,3 +1,3 @@
-import Button from "./Button";
+import MaguasButton from "./MaguasButton";
 
-export { Button };
+export { MaguasButton };
