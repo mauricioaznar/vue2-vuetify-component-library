@@ -2,7 +2,7 @@
   "name": "maguas-vuetify2",
   "version": "0.1.11",
   "private": false,
-  "main": "./dist/maguas-vuetify2npm.common.js",
+  "main": "./dist/maguas-vuetify2.common.js",
   "files": [
     "dist/*",
     "src/*",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name maguas-vuetify2npm  src/main.ts",
+    "build": "vue-cli-service build --target lib --name maguas-vuetify2 src/main.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public"
