@@ -27,14 +27,10 @@
 </template>
 
 <script>
-import { ValidationProvider } from "vee-validate";
 import Vue from "vue";
 
 export default {
   name: "MaguasTextField",
-  components: {
-    ValidationProvider,
-  },
   props: {
     rules: {
       type: [Object, String],
