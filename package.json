@@ -1,6 +1,6 @@
 {
   "name": "maguas-vuetify2",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": false,
   "main": "./dist/maguas-vuetify2.common.js",
   "files": [
