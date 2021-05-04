@@ -26,10 +26,10 @@
   </v-row>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 
-export default Vue.extend({
+export default {
   name: "MaguasTextField",
   props: {
     rules: {
@@ -79,5 +79,5 @@ export default Vue.extend({
   created() {
     this.innerValue = String(this.value);
   },
-});
+};
 </script>
