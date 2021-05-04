@@ -8,14 +8,11 @@ import MaguasSimplePaginationTable from "@/components/MaguasSimplePaginationTabl
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = {}) {
     // components
-    Vue.component(MaguasTextField.name, MaguasTextField);
-    Vue.component(MaguasConfirmDialog.name, MaguasConfirmDialog);
-    Vue.component(MaguasDialogLayout.name, MaguasDialogLayout);
-    Vue.component(MaguasErrorToaster.name, MaguasErrorToaster);
-    Vue.component(
-      MaguasSimplePaginationTable.name,
-      MaguasSimplePaginationTable
-    );
+    Vue.component("MaguasTextField", MaguasTextField);
+    Vue.component("MaguasConfirmDialog", MaguasConfirmDialog);
+    Vue.component("MaguasDialogLayout", MaguasDialogLayout);
+    Vue.component("MaguasErrorToaster", MaguasErrorToaster);
+    Vue.component("MaguasSimplePaginationTable", MaguasSimplePaginationTable);
   },
 };
 
