@@ -16,6 +16,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Login from "@/views/Login.vue";
+import { AxiosError } from "axios";
 
 export default Vue.extend({
   name: "MaguasErrorToaster",
@@ -36,7 +37,7 @@ export default Vue.extend({
     relogin: function () {
       this.$emit("relogin");
     },
-    setError: function (e) {
+    setError: function (e: AxiosError) {
       let serverError = e.response?.data?.message;
       const status = e.response?.status;
       if (status) {
@@ -74,7 +75,7 @@ export default Vue.extend({
     },
   },
   created() {
-    this.setError(this.value);
+    this.setError(this.value as AxiosError);
   },
   watch: {
     value: function (e) {

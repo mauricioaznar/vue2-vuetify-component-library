@@ -154,21 +154,31 @@ export default Vue.extend({
   },
   data() {
     return {
-      selectedItem: {},
+      selectedItem: null as { id: number } | null,
       confirmDialog: false,
       deleteError: {},
       customFetchError: {},
       itemsPerPage: 10,
       selectedClient: {},
       loading: true,
-      items: [],
+      items: [] as { id: number }[],
       rowsPerPageItems: [10, 20, 30, 40, 50],
     };
   },
   computed: {
-    computedHeaders: function () {
+    computedHeaders: function (): {
+      text: string;
+      formatter?: () => string;
+      value: string;
+    }[] {
+      const headers = this.headers as {
+        text: string;
+        formatter?: () => string;
+        value: string;
+      }[];
+
       return [
-        ...this.headers,
+        ...headers,
         {
           text: "Acciones",
           value: "actions",
@@ -197,7 +207,7 @@ export default Vue.extend({
         this.deleteItem(this.selectedItem);
       }
     },
-    deleteItem: async function (item) {
+    deleteItem: async function (item: { id: number }) {
       try {
         await axios.delete(`${this.entityUrl}/${item.id}`);
         this.items = this.items.filter((c) => {

@@ -67,7 +67,7 @@ export default Vue.extend({
         this.activateDialog = true;
       }
     },
-    handleSubmit: async function (isValid) {
+    handleSubmit: async function (isValid: boolean) {
       if (isValid) {
         try {
           const response = await axios.post("auth/login", {
