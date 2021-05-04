@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MaguasTextField from "@/components/forms/maguas-text-field";
+import MaguasTextField from "@/components/forms/MaguasTextField";
 export default {
   components: { MaguasTextField },
   data() {
