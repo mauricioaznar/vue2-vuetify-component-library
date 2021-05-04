@@ -2,6 +2,8 @@ import { VueConstructor } from "vue";
 import MaguasTextField from "@/components/MaguasTextField.vue";
 import MaguasFormLayout from "@/components/forms/MaguasFormLayout.vue";
 
+export { MaguasTextField };
+
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = {}) {
     // components
