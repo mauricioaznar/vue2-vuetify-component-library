@@ -17,9 +17,9 @@
             </v-btn>
           </template>
           <v-list dense>
-            <!--            <v-list-item to="/clients">-->
-            <!--              <v-list-item-title>Clientes</v-list-item-title>-->
-            <!--            </v-list-item>-->
+            <v-list-item to="/inputs">
+              <v-list-item-title>Inputs</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
 
