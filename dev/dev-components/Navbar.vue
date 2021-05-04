@@ -57,7 +57,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import pjson from "../../../package.json";
+import pjson from "../../package.json";
 
 export default Vue.extend({
   data() {

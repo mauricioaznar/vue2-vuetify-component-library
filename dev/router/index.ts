@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import NoAvailableService from "@/dev/views/NoAvaliableService.vue";
-import NotFound from "@/dev/views/NotFound.vue";
-import Home from "../dev-components/Home.vue";
-import InputView from "../dev-components/InputView.vue";
+import NoAvailableService from "@/views/NoAvaliableService.vue";
+import NotFound from "@/views/NotFound.vue";
+import Home from "#/dev-components/Home.vue";
+import InputView from "#/dev-components/InputView.vue";
 
 Vue.use(VueRouter);
 
