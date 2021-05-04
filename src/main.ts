@@ -1,4 +1,4 @@
-import * as components from "./components/index";
+import * as components from "./components";
 import { VueConstructor } from "vue";
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = {}) {

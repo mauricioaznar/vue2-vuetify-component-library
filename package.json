@@ -3,7 +3,7 @@
   "version": "0.1.20",
   "private": false,
   "scripts": {
-    "dev": "vue-cli-service serve ./src/dev.ts",
+    "dev": "vue-cli-service serve src/dev/dev.ts",
     "build": "vue-cli-service build --target lib --name maguas-vuetify2 src/main.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
@@ -41,6 +41,7 @@
     "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
     "vue-cli-plugin-vuetify": "~2.4.0",
+    "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.11",
     "vuetify": "^2.2.34",
     "vuetify-loader": "^1.7.0"

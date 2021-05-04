@@ -1,19 +1,15 @@
 <template>
   <v-app>
-    <v-container>
-      <v-row>
-        <v-col>
-          <maguas-text-field v-model="text" name="name" />
-        </v-col>
-      </v-row>
-    </v-container>
+    <navbar />
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import MaguasTextField from "@/components/forms/MaguasTextField";
+import Navbar from "@/dev/dev-components/Navbar";
+
 export default {
-  components: { MaguasTextField },
+  components: { Navbar },
   data() {
     return {
       text: "",
