@@ -1,3 +1,3 @@
-import MaguasTextField from "@/components/forms/MaguasTextField.vue";
+import MaguasTextField from "@/components/forms/MaguasTextField.js";
 
 export { MaguasTextField };
