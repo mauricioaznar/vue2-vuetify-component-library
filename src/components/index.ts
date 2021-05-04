@@ -1,3 +1,3 @@
-import MaguasTextField from "@/components/forms/MaguasTextField.js";
+import MaguasTextField from "@/components/forms/maguas-text-field";
 
 export { MaguasTextField };
