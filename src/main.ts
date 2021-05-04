@@ -1,5 +1,5 @@
 import { VueConstructor } from "vue";
-import MaguasTextField from "@/components/forms/MaguasTextField.vue";
+import MaguasTextField from "@/components/MaguasTextField.vue";
 import MaguasFormLayout from "@/components/forms/MaguasFormLayout.vue";
 
 const ComponentLibrary = {
