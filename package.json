@@ -9,10 +9,10 @@
     "lint": "vue-cli-service lint",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public"
   },
-  "main": "./dist/maguas-vuetify2.common.js",
+  "main": "./dist/maguas-vuetify2.umd.js",
   "files": [
     "dist",
-    "src/components/*"
+    "src"
   ],
   "dependencies": {
     "core-js": "^3.6.5"
