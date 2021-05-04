@@ -29,7 +29,7 @@
 <script>
 import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "MaguasTextField",
   props: {
     rules: {
@@ -79,5 +79,5 @@ export default {
   created() {
     this.innerValue = String(this.value);
   },
-};
+});
 </script>
