@@ -1,14 +1,11 @@
-import * as components from "./components";
 import { VueConstructor } from "vue";
+import MaguasTextField from "@/components/forms/MaguasTextField.vue";
+
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = {}) {
     // components
 
-    Object.keys(components).forEach((key) => {
-      const component = components[key];
-
-      Vue.component(component.name, component);
-    });
+    Vue.component("MaguasTextField", MaguasTextField);
   },
 };
 
