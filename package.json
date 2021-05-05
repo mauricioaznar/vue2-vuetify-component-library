@@ -1,6 +1,6 @@
 {
   "name": "maguas-vuetify2",
-  "version": "0.1.60",
+  "version": "0.1.61",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve dev/dev.ts",
