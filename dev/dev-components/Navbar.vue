@@ -20,6 +20,9 @@
             <v-list-item to="/inputs">
               <v-list-item-title>Inputs</v-list-item-title>
             </v-list-item>
+            <v-list-item to="/paginations">
+              <v-list-item-title>Paginations</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
 

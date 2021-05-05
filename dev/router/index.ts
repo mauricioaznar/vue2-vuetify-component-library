@@ -4,6 +4,7 @@ import NoAvailableService from "@/views/NoAvaliableService.vue";
 import NotFound from "@/views/NotFound.vue";
 import Home from "#/dev-components/Home.vue";
 import InputView from "#/dev-components/InputView.vue";
+import PaginationView from "#/dev-components/PaginationView.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes: Array<RouteConfig> = [
     path: "/inputs",
     name: "Inputs",
     component: InputView,
+  },
+  {
+    path: "/paginations",
+    name: "Pagination",
+    component: PaginationView,
   },
   {
     path: "*",

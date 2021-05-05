@@ -99,12 +99,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import ConfirmDialog from "@/components/MaguasConfirmDialog.vue";
-import ErrorToaster from "@/components/MaguasErrorToaster.vue";
+import ConfirmDialog from "./MaguasConfirmDialog.vue";
+import ErrorToaster from "./MaguasErrorToaster.vue";
 import axios from "axios";
 
 export default Vue.extend({
-  name: "MaguasSimplePaginationTable",
+  name: "MaguasSimplePagination",
   components: { ConfirmDialog, ErrorToaster },
   props: {
     disablePagination: {
