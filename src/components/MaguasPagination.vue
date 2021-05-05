@@ -23,26 +23,19 @@
   </v-data-table>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
+<script>
+export default {
   name: "MaguasPagination",
-  props: {
-    headers: {
-      type: Array,
-      required: true,
-    },
-    items: {
-      type: Array,
-      required: true,
-    },
-    loading: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
+  props: {},
+  data() {
+    return {
+      selectedItem: {},
+      itemsPerPage: 10,
+      loading: true,
+      items: [],
+      headers: [],
+      rowsPerPageItems: [10, 20, 30, 40, 50],
+    };
   },
-});
+};
 </script>
