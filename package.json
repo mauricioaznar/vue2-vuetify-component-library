@@ -45,12 +45,12 @@
     "vue-cli-plugin-vuetify": "~2.4.0",
     "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.11",
-    "vuetify": "^2.2.34",
+    "vuetify": "^2.4.11",
     "vuetify-loader": "^1.7.0"
   },
   "peerDependencies": {
     "vue": "2.x",
-    "vuetify": "2.x",
+    "vuetify": "2.4.x",
     "vee-validate": "3.x",
     "axios": "0.x"
   },
