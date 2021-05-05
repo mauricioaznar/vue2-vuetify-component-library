@@ -28,58 +28,14 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "MaguasSimplePagination",
-  props: {
-    disablePagination: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
-    headers: {
-      type: Array,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    entityUrl: {
-      type: String,
-      required: true,
-    },
-    banner: {
-      type: String,
-      default: () => {
-        return;
-      },
-    },
-    editRouteName: {
-      type: String,
-      required: true,
-    },
-    createRouteName: {
-      type: String,
-      required: true,
-    },
-    fetchParams: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    },
-    search: {
-      type: String,
-      default: function () {
-        return "";
-      },
-    },
-  },
+  props: {},
   data() {
     return {
       selectedItem: {},
       itemsPerPage: 10,
       loading: true,
       items: [],
+      headers: [],
       rowsPerPageItems: [10, 20, 30, 40, 50],
     };
   },
