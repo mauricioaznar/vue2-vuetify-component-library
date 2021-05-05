@@ -16,20 +16,12 @@
     <v-row>
       <v-col cols="12">
         <v-data-table
-          disable-sort
           :search="search"
           :headers="headers"
           :items="items"
           :loading="loading"
           loading-text="Cargando..."
         >
-          <template
-            v-for="header in headers.filter((h) =>
-              h.hasOwnProperty('formatter')
-            )"
-            v-slot:[`item.${header.value}`]
-          >
-          </template>
         </v-data-table>
       </v-col>
     </v-row>
