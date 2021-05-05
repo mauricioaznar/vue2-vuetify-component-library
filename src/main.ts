@@ -7,7 +7,6 @@ import MaguasSimplePaginationTable from "@/components/MaguasSimplePaginationTabl
 
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = {}) {
-    // components
     Vue.component("MaguasTextField", MaguasTextField);
     Vue.component("MaguasConfirmDialog", MaguasConfirmDialog);
     Vue.component("MaguasDialogLayout", MaguasDialogLayout);

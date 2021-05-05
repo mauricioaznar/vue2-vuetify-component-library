@@ -17,7 +17,7 @@
               v-if="showClose"
               color="blue darken-1"
               text
-              @click="dialog = false"
+              @click="handleCancel"
             >
               Close
             </v-btn>
@@ -30,8 +30,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from "vue";
+import Vue, { VueConstructor, PropType } from "vue";
 import { ValidationObserver } from "vee-validate";
+
+export type CancelCallback = () => void;
+export type SubmitCallback = (isValid: boolean) => void;
 
 export default (Vue as VueConstructor<
   Vue & {
@@ -71,15 +74,24 @@ export default (Vue as VueConstructor<
         return false;
       },
     },
+    cancelCallback: {
+      type: Function as PropType<CancelCallback>,
+      required: true,
+    },
+    submitCallback: {
+      type: Function as PropType<SubmitCallback>,
+      required: true,
+    },
   },
   methods: {
     handleCancel: function () {
       this.dialog = false;
-      this.$emit("cancel");
+      this.cancelCallback();
     },
     save: async function () {
       const isValid = await this.$refs.obs.validate();
       this.$emit("submit", isValid);
+      this.submitCallback(isValid);
     },
   },
   created() {
