@@ -30,21 +30,6 @@
             'items-per-page-text': '',
           }"
         >
-          <template v-slot:top="{ pagination, options, updateOptions }">
-            <v-toolbar elevation="0">
-              <slot name="toolbar"> </slot>
-              <v-spacer />
-              <v-data-footer
-                v-if="!disablePagination"
-                :pagination="pagination"
-                :options="options"
-                :items-per-page-options="rowsPerPageItems"
-                @update:options="updateOptions"
-                items-per-page-text=""
-              />
-            </v-toolbar>
-          </template>
-
           <template
             v-for="header in headers.filter((h) =>
               h.hasOwnProperty('formatter')
@@ -90,22 +75,16 @@
           </template>
         </v-data-table>
       </v-col>
-      <confirm-dialog v-model="confirmDialog" @confirm="confirmDeletion" />
-      <error-toaster v-model="customFetchError" @relogin="customFetch" />
-      <error-toaster v-model="deleteError" @relogin="confirmDeletion" />
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import ConfirmDialog from "./MaguasConfirmDialog.vue";
-import ErrorToaster from "./MaguasErrorToaster.vue";
 import axios from "axios";
 
 export default Vue.extend({
   name: "MaguasSimplePagination",
-  components: { ConfirmDialog, ErrorToaster },
   props: {
     disablePagination: {
       type: Boolean,
