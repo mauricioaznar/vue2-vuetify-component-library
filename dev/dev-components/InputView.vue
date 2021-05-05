@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import MaguasTextField from "@/components/MaguasTextField.vue";
+import MaguasTextField from "@/components/form-inputs/MaguasTextField.vue";
 
 export default Vue.extend({
   components: { MaguasTextField },

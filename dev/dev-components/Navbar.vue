@@ -23,6 +23,9 @@
             <v-list-item to="/paginations">
               <v-list-item-title>Paginations</v-list-item-title>
             </v-list-item>
+            <v-list-item to="/timeline">
+              <v-list-item-title>Timeline</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
 

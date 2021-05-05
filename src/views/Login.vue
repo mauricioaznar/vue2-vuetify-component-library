@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import DialogLayout from "@/components/MaguasDialogLayout.vue";
-import VeeTextField from "@/components/MaguasTextField.vue";
+import DialogLayout from "@/components/form-layouts/MaguasDialogLayout.vue";
+import VeeTextField from "@/components/form-inputs/MaguasTextField.vue";
 import axios from "axios";
 
 export interface Credentials {

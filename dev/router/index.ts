@@ -5,6 +5,7 @@ import NotFound from "@/views/NotFound.vue";
 import Home from "#/dev-components/Home.vue";
 import InputView from "#/dev-components/InputView.vue";
 import PaginationView from "#/dev-components/PaginationView.vue";
+import TimelineView from "#/dev-components/TimelineView.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes: Array<RouteConfig> = [
     path: "/paginations",
     name: "Pagination",
     component: PaginationView,
+  },
+  {
+    path: "/timeline",
+    name: "Timeline",
+    component: TimelineView,
   },
   {
     path: "*",

@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import ConfirmDialog from "./MaguasConfirmDialog.vue";
-import ErrorToaster from "./MaguasErrorToaster.vue";
+import ConfirmDialog from "../layouts/MaguasConfirmDialog.vue";
+import ErrorToaster from "../toasters/MaguasErrorToaster.vue";
 
 export default {
   name: "MaguasPagination",
