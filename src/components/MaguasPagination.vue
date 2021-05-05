@@ -102,7 +102,7 @@ import ConfirmDialog from "./MaguasConfirmDialog.vue";
 import ErrorToaster from "./MaguasErrorToaster.vue";
 
 export default {
-  name: "SimplePaginationTable",
+  name: "MaguasPagination",
   components: { ConfirmDialog, ErrorToaster },
   props: {
     disablePagination: {
