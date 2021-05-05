@@ -1,8 +1,9 @@
 <template>
   <dialog-layout
     title="Ingresar"
-    @submit="handleSubmit"
     v-model="activateDialog"
+    :submit-callback="handleSubmit"
+    :cancel-callback="handleCancel"
   >
     <vee-text-field
       prepend-icon="mdi-account"
@@ -66,6 +67,9 @@ export default Vue.extend({
       if (this.value) {
         this.activateDialog = true;
       }
+    },
+    handleCancel: function () {
+      console.log("cancel");
     },
     handleSubmit: async function (isValid: boolean) {
       if (isValid) {
