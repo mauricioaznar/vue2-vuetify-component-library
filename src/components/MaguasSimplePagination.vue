@@ -139,9 +139,6 @@ export default Vue.extend({
       ];
     },
   },
-  created() {
-    this.customFetch();
-  },
   methods: {
     editItem: function (item: { id: number }) {
       const id = String(item.id);
