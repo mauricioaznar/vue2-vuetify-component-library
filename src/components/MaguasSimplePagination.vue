@@ -47,32 +47,6 @@
               {{ header.formatter(value) }}
             </template>
           </template>
-
-          <template v-slot:item.actions="{ item }">
-            <v-row>
-              <v-btn
-                small
-                icon
-                @click="
-                  () => {
-                    editItem(item);
-                  }
-                "
-              >
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
-              <v-btn
-                small
-                icon
-                @click="
-                  confirmDialog = true;
-                  selectedItem = item;
-                "
-              >
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </v-row>
-          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -195,31 +169,6 @@ export default Vue.extend({
       } catch (e) {
         this.deleteError = e;
       }
-    },
-    customFetch: async function () {
-      this.loading = true;
-      try {
-        const responses = await Promise.all([
-          axios.get(`${this.entityUrl}`, {
-            params: { ...this.fetchParams },
-          }),
-        ]);
-        const response1 = responses[0];
-        if (response1.data) {
-          this.items = response1.data;
-        }
-      } catch (e) {
-        this.customFetchError = e;
-      }
-      this.loading = false;
-    },
-  },
-  watch: {
-    fetchParams: {
-      handler: function () {
-        this.customFetch();
-      },
-      deep: true,
     },
   },
 });
