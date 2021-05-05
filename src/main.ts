@@ -3,7 +3,7 @@ import MaguasTextField from "./components/MaguasTextField.vue";
 import MaguasConfirmDialog from "./components/MaguasConfirmDialog.vue";
 import MaguasDialogLayout from "./components/MaguasDialogLayout.vue";
 import MaguasErrorToaster from "./components/MaguasErrorToaster.vue";
-import MaguasSimplePagination from "./components/MaguasSimplePagination.vue";
+import MaguasPagination from "./components/MaguasPagination.vue";
 import MaguasSimpleTable from "./components/MaguasSimpleTable.vue";
 
 const ComponentLibrary = {
@@ -12,7 +12,7 @@ const ComponentLibrary = {
     Vue.component("MaguasConfirmDialog", MaguasConfirmDialog);
     Vue.component("MaguasDialogLayout", MaguasDialogLayout);
     Vue.component("MaguasErrorToaster", MaguasErrorToaster);
-    Vue.component("MaguasSimplePagination", MaguasSimplePagination);
+    Vue.component("MaguasPagination", MaguasPagination);
     Vue.component("MaguasSimpleTable", MaguasSimpleTable);
   },
 };

@@ -27,7 +27,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "MaguasSimplePagination",
+  name: "MaguasPagination",
   props: {},
   data() {
     return {
