@@ -28,16 +28,21 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "MaguasPagination",
-  props: {},
-  data() {
-    return {
-      selectedItem: {},
-      itemsPerPage: 10,
-      loading: true,
-      items: [],
-      headers: [],
-      rowsPerPageItems: [10, 20, 30, 40, 50],
-    };
+  props: {
+    headers: {
+      type: Array,
+      required: true,
+    },
+    items: {
+      type: Array,
+      required: true,
+    },
+    loading: {
+      type: Boolean,
+      default: () => {
+        return false;
+      },
+    },
   },
 });
 </script>
