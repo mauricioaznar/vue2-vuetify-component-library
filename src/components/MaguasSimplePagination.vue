@@ -55,7 +55,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import axios from "axios";
 
 export default Vue.extend({
   name: "MaguasSimplePagination",
@@ -107,45 +106,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      selectedItem: null as { id: number } | null,
-      confirmDialog: false,
-      deleteError: {},
-      customFetchError: {},
+      selectedItem: {},
       itemsPerPage: 10,
-      selectedClient: {},
       loading: true,
-      items: [] as { id: number }[],
+      items: [],
       rowsPerPageItems: [10, 20, 30, 40, 50],
     };
-  },
-  methods: {
-    editItem: function (item: { id: number }) {
-      const id = String(item.id);
-      this.$router.push({
-        name: this.editRouteName,
-        params: { id },
-      });
-    },
-    createItem: function () {
-      this.$router.push({
-        name: this.createRouteName,
-      });
-    },
-    confirmDeletion: function () {
-      if (this.selectedItem) {
-        this.deleteItem(this.selectedItem);
-      }
-    },
-    deleteItem: async function (item: { id: number }) {
-      try {
-        await axios.delete(`${this.entityUrl}/${item.id}`);
-        this.items = this.items.filter((c) => {
-          return c.id !== this.selectedItem?.id;
-        });
-      } catch (e) {
-        this.deleteError = e;
-      }
-    },
   },
 });
 </script>
