@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <maguas-simple-pagination
+    <maguas-simple-table
       create-route-name="A"
       edit-route-name="a"
       entity-url="http://localhost:3000/equipments"
