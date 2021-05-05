@@ -51,7 +51,7 @@
     "vue": "2.x",
     "vuetify": "2.6.x",
     "vee-validate": "3.4.x",
-    "axios": "0.21.x"
+    "axios": "0.20"
   },
   "eslintConfig": {
     "root": true,
