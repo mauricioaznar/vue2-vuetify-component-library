@@ -23,8 +23,12 @@ import MaguasTimeline from "./components/timelines/MaguasTimeline.vue";
 import MaguasTimelineItem from "./components/timelines/MaguasTimelineItem.vue";
 import MaguasTimelineTitle from "./components/timelines/MaguasTimelineTitle.vue";
 
+import moment from "moment";
+
 const ComponentLibrary = {
-  install(Vue: VueConstructor, options = { baseURL: "" }) {
+  install(Vue: VueConstructor, options = { baseURL: "", locale: "es" }) {
+    moment.locale("es");
+
     // form-layouts
     Vue.component("MaguasDialogLayout", MaguasDialogLayout);
 
