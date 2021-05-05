@@ -20,7 +20,7 @@
           :hide-default-footer="disablePagination"
           disable-sort
           :search="search"
-          :headers="computedHeaders"
+          :headers="headers"
           :items="items"
           :loading="loading"
           loading-text="Cargando..."
@@ -117,27 +117,6 @@ export default Vue.extend({
       items: [] as { id: number }[],
       rowsPerPageItems: [10, 20, 30, 40, 50],
     };
-  },
-  computed: {
-    computedHeaders: function (): {
-      text: string;
-      formatter?: () => string;
-      value: string;
-    }[] {
-      const headers = this.headers as {
-        text: string;
-        formatter?: () => string;
-        value: string;
-      }[];
-
-      return [
-        ...headers,
-        {
-          text: "Acciones",
-          value: "actions",
-        },
-      ];
-    },
   },
   methods: {
     editItem: function (item: { id: number }) {
