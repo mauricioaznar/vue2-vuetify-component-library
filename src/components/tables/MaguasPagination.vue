@@ -100,6 +100,7 @@
 <script>
 import ConfirmDialog from "../layouts/MaguasConfirmDialog.vue";
 import ErrorToaster from "../toasters/MaguasErrorToaster.vue";
+import axios from "axios";
 
 export default {
   name: "MaguasPagination",
@@ -197,10 +198,10 @@ export default {
     },
     deleteItem: async function (item) {
       try {
-        // await INOPACK.delete(`${this.entityUrl}/${item.id}`);
-        // this.items = this.items.filter((c) => {
-        //   return c.id !== this.selectedItem?.id;
-        // });
+        await axios.delete(`${this.entityUrl}/${item.id}`);
+        this.items = this.items.filter((c) => {
+          return c.id !== this.selectedItem?.id;
+        });
       } catch (e) {
         this.deleteError = e;
       }
@@ -208,15 +209,15 @@ export default {
     customFetch: async function () {
       this.loading = true;
       try {
-        // const responses = await Promise.all([
-        //   INOPACK.get(`${this.entityUrl}`, {
-        //     params: { ...this.fetchParams },
-        //   }),
-        // ]);
-        // const response1 = responses[0];
-        // if (response1.data) {
-        //   this.items = response1.data;
-        // }
+        const responses = await Promise.all([
+          axios.get(`${this.entityUrl}`, {
+            params: { ...this.fetchParams },
+          }),
+        ]);
+        const response1 = responses[0];
+        if (response1.data) {
+          this.items = response1.data;
+        }
       } catch (e) {
         this.customFetchError = e;
       }
