@@ -16,36 +16,19 @@
     <v-row>
       <v-col cols="12">
         <v-data-table
-          :disable-pagination="disablePagination"
-          :hide-default-footer="disablePagination"
           disable-sort
           :search="search"
           :headers="headers"
           :items="items"
           :loading="loading"
           loading-text="Cargando..."
-          :items-per-page="itemsPerPage"
-          :footer-props="{
-            'items-per-page-options': [10, 20, 30, 40, 50],
-            'items-per-page-text': '',
-          }"
         >
           <template
             v-for="header in headers.filter((h) =>
               h.hasOwnProperty('formatter')
             )"
-            v-slot:[`item.${header.value}`]="{ header: header, value }"
+            v-slot:[`item.${header.value}`]
           >
-            <template v-if="Array.isArray(value)">
-              <ul :key="header.text">
-                <li v-for="(item, index) in value" :key="index">
-                  {{ header.formatter(item) }}
-                </li>
-              </ul>
-            </template>
-            <template v-else>
-              {{ header.formatter(value) }}
-            </template>
           </template>
         </v-data-table>
       </v-col>
