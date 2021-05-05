@@ -27,7 +27,7 @@ import moment from "moment";
 
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = { baseURL: "", locale: "es" }) {
-    moment.locale("es");
+    moment.locale(options.locale);
 
     // form-layouts
     Vue.component("MaguasDialogLayout", MaguasDialogLayout);
