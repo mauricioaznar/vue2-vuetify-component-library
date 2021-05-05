@@ -4,6 +4,7 @@ import MaguasConfirmDialog from "./components/MaguasConfirmDialog.vue";
 import MaguasDialogLayout from "./components/MaguasDialogLayout.vue";
 import MaguasErrorToaster from "./components/MaguasErrorToaster.vue";
 import MaguasSimplePagination from "./components/MaguasSimplePagination.vue";
+import MaguasSimpleTable from "./components/MaguasSimpleTable.vue";
 
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = { baseURL: "" }) {
@@ -12,6 +13,7 @@ const ComponentLibrary = {
     Vue.component("MaguasDialogLayout", MaguasDialogLayout);
     Vue.component("MaguasErrorToaster", MaguasErrorToaster);
     Vue.component("MaguasSimplePagination", MaguasSimplePagination);
+    Vue.component("MaguasSimpleTable", MaguasSimpleTable);
   },
 };
 
