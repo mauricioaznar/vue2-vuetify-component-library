@@ -1,26 +1,100 @@
 <template>
-  <v-data-table
-    v-bind="$attrs"
-    v-on="$listeners"
-    disable-pagination
-    hide-default-footer
-    :headers="headers"
-    :items="items"
-    :loading="loading"
-  >
-    <template
-      v-for="header in headers.filter((h) => h.hasOwnProperty('formatter'))"
-      v-slot:[`item.${header.value}`]="{ header: header, value }"
-    >
-      <template>
-        {{ header.formatter(value) }}
-      </template>
-    </template>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-toolbar dark :src="banner">
+          <v-toolbar-title>{{ title }}</v-toolbar-title>
 
-    <template v-slot:expanded-item="{ headers, item }">
-      <slot name="expanded-item" :headers="headers" :item="item"> </slot>
-    </template>
-  </v-data-table>
+          <v-spacer></v-spacer>
+
+          <v-btn icon @click="createItem">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-toolbar>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-data-table
+          :disable-pagination="disablePagination"
+          :hide-default-footer="disablePagination"
+          disable-sort
+          :search="search"
+          :headers="computedHeaders"
+          :items="items"
+          :loading="loading"
+          loading-text="Cargando..."
+          :items-per-page="itemsPerPage"
+          :footer-props="{
+            'items-per-page-options': [10, 20, 30, 40, 50],
+            'items-per-page-text': '',
+          }"
+        >
+          <template v-slot:top="{ pagination, options, updateOptions }">
+            <v-toolbar elevation="0">
+              <slot name="toolbar"> </slot>
+              <v-spacer />
+              <v-data-footer
+                v-if="!disablePagination"
+                :pagination="pagination"
+                :options="options"
+                :items-per-page-options="rowsPerPageItems"
+                @update:options="updateOptions"
+                items-per-page-text=""
+              />
+            </v-toolbar>
+          </template>
+
+          <template
+            v-for="header in headers.filter((h) =>
+              h.hasOwnProperty('formatter')
+            )"
+            v-slot:[`item.${header.value}`]="{ header: header, value }"
+          >
+            <template v-if="Array.isArray(value)">
+              <ul :key="header.text">
+                <li v-for="(item, index) in value" :key="index">
+                  {{ header.formatter(item) }}
+                </li>
+              </ul>
+            </template>
+            <template v-else>
+              {{ header.formatter(value) }}
+            </template>
+          </template>
+
+          <template v-slot:item.actions="{ item }">
+            <v-row>
+              <v-btn
+                small
+                icon
+                @click="
+                  () => {
+                    editItem(item);
+                  }
+                "
+              >
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn
+                small
+                icon
+                @click="
+                  confirmDialog = true;
+                  selectedItem = item;
+                "
+              >
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+            </v-row>
+          </template>
+        </v-data-table>
+      </v-col>
+      <confirm-dialog v-model="confirmDialog" @confirm="confirmDeletion" />
+      <error-toaster v-model="customFetchError" @relogin="customFetch" />
+      <error-toaster v-model="deleteError" @relogin="confirmDeletion" />
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -29,6 +103,7 @@ import ErrorToaster from "./MaguasErrorToaster.vue";
 
 export default {
   name: "MaguasPagination",
+  components: { ConfirmDialog, ErrorToaster },
   props: {
     disablePagination: {
       type: Boolean,
