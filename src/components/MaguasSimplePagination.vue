@@ -1,31 +1,26 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <v-toolbar dark :src="banner">
-          <v-toolbar-title>{{ title }}</v-toolbar-title>
+  <v-data-table
+    v-bind="$attrs"
+    v-on="$listeners"
+    disable-pagination
+    hide-default-footer
+    :headers="headers"
+    :items="items"
+    :loading="loading"
+  >
+    <template
+      v-for="header in headers.filter((h) => h.hasOwnProperty('formatter'))"
+      v-slot:[`item.${header.value}`]="{ header: header, value }"
+    >
+      <template>
+        {{ header.formatter(value) }}
+      </template>
+    </template>
 
-          <v-spacer></v-spacer>
-
-          <v-btn icon @click="createItem">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </v-toolbar>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-data-table
-          :search="search"
-          :headers="headers"
-          :items="items"
-          :loading="loading"
-          loading-text="Cargando..."
-        >
-        </v-data-table>
-      </v-col>
-    </v-row>
-  </v-container>
+    <template v-slot:expanded-item="{ headers, item }">
+      <slot name="expanded-item" :headers="headers" :item="item"> </slot>
+    </template>
+  </v-data-table>
 </template>
 
 <script lang="ts">
