@@ -26,6 +26,11 @@ import MaguasTimelineTitle from "./components/timelines/MaguasTimelineTitle.vue"
 // internal used libraries
 import moment from "moment";
 import axios from "axios";
+import NotFound from "@/views/NotFound.vue";
+
+// views
+
+export { NotFound };
 
 const ComponentLibrary = {
   install(Vue: VueConstructor, options = { baseURL: "", locale: "es" }) {
