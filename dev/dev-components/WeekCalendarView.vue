@@ -10,12 +10,7 @@ export default Vue.extend({
     return {
       exampleTextField: "",
       dialog: false,
-      headers: [
-        {
-          text: "A",
-          value: "a",
-        },
-      ],
+      headers: [{}],
     };
   },
   methods: {
