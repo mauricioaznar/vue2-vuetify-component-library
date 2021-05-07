@@ -154,6 +154,7 @@ interface SyntheticEvent {
 }
 
 export default Vue.extend({
+  name: "MaguasWeekCalendar",
   components: { ErrorToaster, VeeDate, ConfirmDialog },
   data() {
     return {
