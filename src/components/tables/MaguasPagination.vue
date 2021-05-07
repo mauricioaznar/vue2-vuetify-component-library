@@ -97,7 +97,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import ConfirmDialog from "../layouts/MaguasConfirmDialog.vue";
 import ErrorToaster from "../toasters/MaguasErrorToaster.vue";
 import axios from "axios";

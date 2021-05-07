@@ -26,7 +26,7 @@
     <v-row>
       <v-col>
         <v-calendar
-          class="appointments-calendar"
+          class="items-calendar"
           v-model="selectedDate"
           first-interval="6"
           interval-count="16"
@@ -35,7 +35,7 @@
           color="primary"
           :category-show-all="true"
           short-intervals
-          :categories="rooms"
+          :categories="categories"
           :events="events"
           :event-color="getEventColor"
           event-overlap-mode="stack"
@@ -65,17 +65,13 @@
               icon
               @click="
                 () => {
-                  editItem(this.selectedAppointment);
+                  editItem(this.selectedItem);
                 }
               "
             >
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn
-              v-if="selectedAppointment && selectedAppointment.editable"
-              icon
-              @click="confirmDialog = true"
-            >
+            <v-btn icon @click="confirmDialog = true">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
             <v-btn icon @click="selectedOpen = false">
@@ -87,29 +83,25 @@
               {{ selectedEvent.name }}
             </p>
             <v-divider />
-            <p class="mt-4 mb-2">Usuarios:</p>
-            <ul class="mb-4">
-              <li
-                v-for="user in selectedAppointment
-                  ? selectedAppointment.users
-                  : []"
-                :key="user.id"
-              >
-                {{ user.fullname }}
-              </li>
-            </ul>
-            <v-divider />
-            <p class="mt-4 mb-2">Clientes</p>
-            <ul>
-              <li
-                v-for="user in selectedAppointment
-                  ? selectedAppointment.clients
-                  : []"
-                :key="user.id"
-              >
-                {{ user.fullname }}
-              </li>
-            </ul>
+            <!--            <p class="mt-4 mb-2">Usuarios:</p>-->
+            <!--            <ul class="mb-4">-->
+            <!--              <li-->
+            <!--                v-for="user in selectedItem ? selectedItem.users : []"-->
+            <!--                :key="user.id"-->
+            <!--              >-->
+            <!--                {{ user.fullname }}-->
+            <!--              </li>-->
+            <!--            </ul>-->
+            <!--            <v-divider />-->
+            <!--            <p class="mt-4 mb-2">Clientes</p>-->
+            <!--            <ul>-->
+            <!--              <li-->
+            <!--                v-for="user in selectedItem ? selectedItem.clients : []"-->
+            <!--                :key="user.id"-->
+            <!--              >-->
+            <!--                {{ user.fullname }}-->
+            <!--              </li>-->
+            <!--            </ul>-->
           </v-card-text>
         </v-card>
       </v-menu>
@@ -118,7 +110,7 @@
     <v-row class="my-6"> </v-row>
 
     <confirm-dialog v-model="confirmDialog" @confirm="confirmDeletion" />
-    <ErrorToaster v-model="fetchError" @relogin="customFetch" />
+    <ErrorToaster v-model="fetchItemsError" @relogin="customFetch" />
     <ErrorToaster v-model="deleteError" @relogin="confirmDeletion" />
   </div>
 </template>
@@ -129,11 +121,27 @@ import VeeDate from "../form-inputs/MaguasDate.vue";
 import moment from "moment";
 import ConfirmDialog from "../layouts/MaguasConfirmDialog.vue";
 import ErrorToaster from "../toasters/MaguasErrorToaster.vue";
+import colors from "vuetify/lib/util/colors";
 import {
   formatTime,
   dateFormat,
   dateTimeFormat,
 } from "../..//helpers/date-formats";
+import axios from "axios";
+
+const mappedColors = [];
+Object.keys(colors).forEach((color) => {
+  const stringColor = colors[color].base;
+  if (stringColor) {
+    mappedColors.push(stringColor);
+  }
+});
+Object.keys(colors).forEach((color) => {
+  const stringColor = colors[color].base;
+  if (stringColor) {
+    mappedColors.push(stringColor);
+  }
+});
 
 interface SyntheticEvent {
   bubbles: boolean;
@@ -156,36 +164,58 @@ interface SyntheticEvent {
 export default Vue.extend({
   name: "MaguasWeekCalendar",
   components: { ErrorToaster, VeeDate, ConfirmDialog },
+  props: {
+    categoryProperty: {
+      type: String,
+      required: true,
+    },
+    categoryUrl: {
+      type: String,
+      required: true,
+    },
+    entityUrl: {
+      type: String,
+      required: true,
+    },
+    entityCategoryProperty: {
+      type: String,
+      required: true,
+    },
+    entityEventNameProperty: {
+      type: String,
+      required: true,
+    },
+    startDateProperty: {
+      type: String,
+      required: true,
+    },
+    endDateProperty: {
+      type: String,
+      required: true,
+    },
+    params: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
   data() {
     return {
-      appointments: [],
+      items: [],
       events: [] as any[],
-      fetchError: {},
+      fetchItemsError: {},
+      fetchCategoriesError: {},
       deleteError: {},
-      rooms: [
-        "Bancos",
-        "Sala cuadrada",
-        "Sala rectangular",
-        "Privados jefes",
-        "Privados independientes",
-        "Firmas externas",
-      ],
-      colors: [
-        "blue",
-        "red",
-        "deep-purple",
-        "green",
-        "brown",
-        "orange",
-        "grey darken-1",
-      ],
+      categories: [],
+      colors: mappedColors,
       selectedEvent: {} as { data: unknown },
-      selectedAppointment: null as unknown | null,
+      selectedItem: null as unknown | null,
       selectedElement: null as unknown | null,
       selectedOpen: false,
       loading: true,
       confirmDialog: false,
-      selectedDate: moment().subtract(1, "month").format(dateFormat),
+      selectedDate: moment("2020-11-25").format(dateFormat),
     };
   },
   mounted() {
@@ -199,16 +229,27 @@ export default Vue.extend({
     customFetch: async function () {
       this.loading = true;
       try {
-        this.appointments = [];
+        const categoryResponse = await axios.get(`${this.categoryUrl}`);
+        this.categories = categoryResponse.data.map(
+          (category) => category[this.categoryProperty]
+        );
       } catch (e) {
-        this.fetchError = e;
+        this.fetchCategoriesError = e;
+      }
+      try {
+        const itemResponse = await axios.get(`${this.entityUrl}`, {
+          params: this.params,
+        });
+        this.items = itemResponse.data.results;
+      } catch (e) {
+        this.fetchItemsError = e;
       }
       this.loading = false;
     },
     editItem: function (item) {
       const id = String(item.id);
       this.$router.push({
-        name: "AppointmentsEdit",
+        name: "itemsEdit",
         params: { id },
       });
     },
@@ -220,8 +261,8 @@ export default Vue.extend({
       }
     },
     confirmDeletion: function () {
-      if (this.selectedAppointment) {
-        this.deleteItem(this.selectedAppointment);
+      if (this.selectedItem) {
+        this.deleteItem(this.selectedItem);
       }
     },
     showEvent: function ({
@@ -233,7 +274,7 @@ export default Vue.extend({
     }) {
       const open = () => {
         this.selectedEvent = event;
-        this.selectedAppointment = event.data;
+        this.selectedItem = event.data;
         this.selectedElement = nativeEvent.target;
         setTimeout(() => {
           this.selectedOpen = true;
@@ -251,7 +292,7 @@ export default Vue.extend({
     },
     createAppointment: function () {
       this.$router.push({
-        name: "AppointmentsNew",
+        name: "itemsNew",
       });
     },
     getEventColor(event: { color: string }) {
@@ -262,16 +303,16 @@ export default Vue.extend({
     selectedDate: function () {
       this.customFetch();
     },
-    appointments: function () {
-      this.events = this.appointments.map((appointment) => {
+    items: function () {
+      this.events = this.items.map((item) => {
         return {
-          name: appointment.name,
-          start: moment(appointment.startDate).format(dateTimeFormat),
-          end: moment(appointment.endDate).format(dateTimeFormat),
-          color: this.colors[appointment.roomId - 1],
+          name: item[this.entityEventNameProperty],
+          start: moment(item[this.startDateProperty]).format(dateTimeFormat),
+          end: moment(item[this.endDateProperty]).format(dateTimeFormat),
+          color: this.colors[item.machineId - 1],
           timed: false,
-          category: appointment.roomName,
-          data: appointment,
+          category: item[this.entityCategoryProperty][this.categoryProperty],
+          data: item,
         };
       });
     },
@@ -280,15 +321,13 @@ export default Vue.extend({
 </script>
 
 <style>
-.appointments-calendar .v-calendar-daily__head .v-calendar-category__category {
+.items-calendar .v-calendar-daily__head .v-calendar-category__category {
   padding: 1rem 0;
 }
-.appointments-calendar .v-calendar-daily__head .v-calendar-daily_head-weekday {
+.items-calendar .v-calendar-daily__head .v-calendar-daily_head-weekday {
   display: none;
 }
-.appointments-calendar
-  .v-calendar-daily__head
-  .v-calendar-daily_head-day-label {
+.items-calendar .v-calendar-daily__head .v-calendar-daily_head-day-label {
   display: none;
 }
 </style>
