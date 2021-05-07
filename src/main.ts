@@ -23,6 +23,8 @@ import MaguasTimeline from "./components/timelines/MaguasTimeline.vue";
 import MaguasTimelineItem from "./components/timelines/MaguasTimelineItem.vue";
 import MaguasTimelineTitle from "./components/timelines/MaguasTimelineTitle.vue";
 
+import MaguasWeekCalendar from "./components/calendars/MaguasWeekCalendar.vue";
+
 // internal used libraries
 import moment from "moment";
 import axios from "axios";
@@ -54,6 +56,9 @@ const ComponentLibrary = {
     Vue.component("MaguasTimeline", MaguasTimeline);
     Vue.component("MaguasTimelineItem", MaguasTimelineItem);
     Vue.component("MaguasTimelineTitle", MaguasTimelineTitle);
+
+    // calendars
+    Vue.component("MaguasWeekCalendar", MaguasWeekCalendar);
   },
 };
 

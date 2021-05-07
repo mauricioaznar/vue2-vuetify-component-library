@@ -26,6 +26,9 @@
             <v-list-item to="/timeline">
               <v-list-item-title>Timeline</v-list-item-title>
             </v-list-item>
+            <v-list-item to="/weekCalendar">
+              <v-list-item-title>Week Calendar</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
 

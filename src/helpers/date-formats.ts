@@ -18,6 +18,12 @@ export const formatDateTime = (date: string) => {
     : "-";
 };
 
+export const formatTime = (datetime: string) => {
+  return moment(datetime, dateTimeFormat).isValid()
+    ? moment(datetime, dateTimeFormat).format("HH:mm")
+    : "-";
+};
+
 export const getCurrentMonth = () => {
   return moment().format("M");
 };

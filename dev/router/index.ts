@@ -6,6 +6,7 @@ import Home from "#/dev-components/Home.vue";
 import InputView from "#/dev-components/InputView.vue";
 import PaginationView from "#/dev-components/PaginationView.vue";
 import TimelineView from "#/dev-components/TimelineView.vue";
+import WeekCalendarView from "#/dev-components/WeekCalendarView.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes: Array<RouteConfig> = [
     path: "/timeline",
     name: "Timeline",
     component: TimelineView,
+  },
+  {
+    path: "/weekCalendar",
+    name: "WeekCalendar",
+    component: WeekCalendarView,
   },
   {
     path: "*",

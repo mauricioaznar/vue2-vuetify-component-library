@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col>
+        <v-btn @click="dialog = !dialog"> Activate</v-btn>
+      </v-col>
+    </v-row>
     <maguas-dialog-layout
       title="this is a title"
       v-model="dialog"
@@ -9,7 +14,6 @@
     >
       <maguas-text-field name="example name" v-model="exampleTextField" />
     </maguas-dialog-layout>
-    <v-btn @click="dialog = !dialog"> Activate</v-btn>
   </v-container>
 </template>
 
